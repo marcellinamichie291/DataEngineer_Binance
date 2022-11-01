@@ -273,6 +273,18 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
+  
+  db:
+    image: postgres:13
+    ports:
+      - 5434:5434
+    environment:
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - data: /var/lib/postgresql/data
+      - type: tmpfs
+        target: /dev/she
 
 volumes:
   postgres-db-volume:
+  data:
